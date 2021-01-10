@@ -1,1 +1,29 @@
-<p>todo works!</p>
+<main>
+    <section>
+      <h1>{{title}} Todo List</h1>
+  
+      <p>A place to store your todos</p>
+      <label for="filter">
+        <input type="text"  id ="filter" placeholder="Filter your to-dos" />
+      </label>
+  
+      <div>
+
+        <div *ngFor="let todo of todos; let i=index" >
+   
+           {{i+1}}. <span *ngIf="!todo.completed"><button (click)="completeTask(todo)" >Complete</button> </span>
+           <span [ngClass]="{ strikethrough: todo.completed }"> {{todo.task}} </span>
+           <button class="close">X</button> 
+          
+           
+       </div>
+      </div>
+  
+      <label >
+          <input type="text" id="taskAdd" ngModel placeholder="Add your to-do">
+      </label>
+      <button type="submit" id="add">Add</button>
+    </section>
+  </main>
+  
+
