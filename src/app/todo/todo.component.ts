@@ -12,10 +12,16 @@ interface Todo {
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
- // @Input() villager: Villager;
+ @Input() todo: Todo;
+ @Output() deleted = new EventEmitter<string>();
   public todos : Todo [];
+  filter: string ="";
+  todo2: Todo[];
 
   constructor() { 
+    //inside of class, but not in constructio
+    
+
     this.todos = [
       {
         task: "feed cats",
@@ -37,8 +43,31 @@ export class TodoComponent implements OnInit {
   }
   completeTask = function(todo): void {
     todo.completed=true;
-  
   }
+
+  removeTask(task: string) {
+    console.log(task);
+    let removeIndex = this.todos.findIndex(function(todo){
+      return todo.task===task;
+    })
+    
+    this.todos.splice(removeIndex, 1);
+    
+  }
+
+  addToList(task){
+    console.log(task);
+    this.todos.push({task: task, completed: false});
+    console.log(this.todos);
+
+  }
+  
+  getFilteredResults() : Todo[] {
+   return this.todos.filter((todo) => {
+      return this.todo.task.toLowerCase().includes(this.filter.toLowerCase());
+    });
+  }
+
   ngOnInit(): void {
   }
 
