@@ -11,7 +11,7 @@
 
     <!-- <div (deleted)="deleted($event)"></div> -->
     <ol>
-      <li *ngFor="let todo of todos">
+      <li *ngFor="let todo of getFilteredResults(); index as i">
         <span class="flex-li">
           <button *ngIf="!todo.completed" (click)="completeTask(todo)">Complete</button>
           <span [ngClass]="{ strikethrough: todo.completed }">
@@ -24,8 +24,8 @@
     </ol>
 
     <label>
-      <input type="text" id="taskAdd" name="task" [(ngModel)] ="task" placeholder="Add your to-do" />
+      <input type="text" id="task" name="task" [(ngModel)] ="newTask" placeholder="Add your to-do" />
     </label>
-    <button type="submit" name="add" id="add" (click)="addToList(task)">Add</button>
+    <button type="submit" name="add" id="add" (click)="addToList()">Add</button>
   </section>
 </main>

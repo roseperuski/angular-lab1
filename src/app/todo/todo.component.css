@@ -36,14 +36,10 @@ button {
      background-color: white;
  }
  
- .flex-li{
-    display: flex;
-    align-items: center;
-}
+
  .close{
-     /* float: right; */
-     display: flex;
-     justify-content:flex-end ;
+     float: right;
+     
  }
  
  .strikethrough{

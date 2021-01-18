@@ -16,7 +16,7 @@ export class TodoComponent implements OnInit {
  @Output() deleted = new EventEmitter<string>();
   public todos : Todo [];
   filter: string ="";
-  todo2: Todo[];
+ 
 
   constructor() { 
     //inside of class, but not in constructio
@@ -55,17 +55,21 @@ export class TodoComponent implements OnInit {
     
   }
 
-  addToList(task){
-    console.log(task);
-    this.todos.push({task: task, completed: false});
-    console.log(this.todos);
-
-  }
+ 
   
   getFilteredResults() : Todo[] {
    return this.todos.filter((todo) => {
-      return this.todo.task.toLowerCase().includes(this.filter.toLowerCase());
+     const taskLower = todo.task.toLocaleLowerCase();
+      const filterLower = this.filter.toLocaleLowerCase();
+
+      return taskLower.includes(filterLower);
     });
+  }
+
+  addToList() : void{
+    let item: Todo = {task: this.newTask, completed: false}
+    this.todos.push(item);
+    
   }
 
   ngOnInit(): void {
